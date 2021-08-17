@@ -81,3 +81,64 @@ const menu = [
     desc: `Red bean paste dessert, serving with honey.`,
   },
 ];
+
+// display food list
+const foodList = (menu) => {
+  let section = document.querySelector(".section-center");
+
+  let showMenu = menu.map((item) => {
+    return `
+    <div class="menu-items col-lg-6 col-sm-12">
+    <img src=${item.img} alt=${item.title} class="photo" />
+      <div class="menu-info">
+        <div class="menu-title">
+          <h4> ${item.title} </h4>
+          <h4 class="price">${item.price}</h4>
+        </div>
+        <div class="menu-text"> ${item.desc} </div>
+      </div>
+    </div>`
+  }).join("");
+  section.innerHTML = showMenu;
+};
+
+// add buttons and functions
+const filteringButtons = () => {
+  const categories = menu.reduce(
+    (v, i) => {
+      (v.includes(i.category) ? v : v.push(i.category) )
+      return v;
+    }, ["All"])
+
+    console.log("categories",categories);
+
+//display buttons
+  const catButtons = categories.map((category) => {
+    return `<button class="btn btn-outline-secondary btn-item" data-id=${category}>${category}</button>`
+  }).join("");
+  let buttonContainers = document.querySelector(".btn-container");
+  buttonContainers.innerHTML=catButtons;
+
+  // add click event to the buttons and filter menu
+  let clickButtons = document.getElementsByClassName("btn-item");
+
+  for (let i=0; i<clickButtons.length; i++) {
+    clickButtons[i].addEventListener("click", function(ev) {
+      const category = ev.currentTarget.dataset.id;
+      
+      const filteredMenu = menu.filter((item) => {
+        if (item.category == category)
+          return item;
+      });
+
+      if (category=="All")
+        foodList(menu);
+      else  
+        foodList(filteredMenu);
+    })
+  }
+};
+
+// call functions
+foodList(menu);
+filteringButtons();

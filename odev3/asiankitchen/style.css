@@ -13,7 +13,7 @@ h2 {
   font-family: "Great Vibes", cursive;
   font-size: 3rem;
   text-align: center;
-  color: #ff6a23;
+  color: #e92c0a;
 }
 .menu {
   margin-top: 20px;
@@ -23,17 +23,19 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 40px 0;
+  margin: 30px 0;
 }
+
 .btn-item {
   margin-left: 15px;
+  width: 70px;
 }
 
 .photo {
-  width: 30%;
-  height: 175px;
-  object-fit: cover;
-  border: 0.25rem solid black;
+  height: 200px;
+  width: 160px;
+  object-fit:cover;
+  border: 0.15rem solid rgb(175, 66, 66);
   border-radius: 10px;
 }
 .menu-items {
